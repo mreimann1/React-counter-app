@@ -2,20 +2,25 @@ import React, { Component } from "react";
 import { link } from "fs";
 
 class Counter extends Component {
-  state = {
-    value: this.props.counter.value
-  };
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+    if (prevProps.counter.value !== this.props.counter.value) {
+      //we can do something based on whether the props were changed
+    }
+  }
 
-  handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 }); //use this rather than count++
-  };
+  componentWillUnmount() {
+    console.log("Counter - Unmount");
+  }
 
   render() {
+    console.log("Counter - Rendered");
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
         >
           Increment
@@ -31,11 +36,11 @@ class Counter extends Component {
   }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
   formatCount() {
-    return this.state.value;
+    return this.props.counter.value;
   }
 }
 
