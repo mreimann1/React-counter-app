@@ -16,7 +16,7 @@ class Counters extends Component {
             key={counter.id}
             onDelete={onDelete}
             onIncrement={onIncrement}
-            onReduce={onReduce} //lifts the state via props
+            onReduce={onReduce}
             counter={counter}
           />
         ))}

@@ -18,19 +18,31 @@ class App extends React.Component {
     console.log("App - Constructor");
   }
 
+  /** logs to console when app reaches this lifecycle hook */
   componentDidMount() {
     // cando Ajax call here IE connect to backend
     console.log("App - Mounted");
   }
 
+  /** increments value in counter */
   handleIncrement = counter => {
     const counters = [...this.state.counters]; //clones this array
     const index = counters.indexOf(counter); //gets index of counter to inc
-    counters[index] = { ...counter }; //
+    counters[index] = { ...counter }; // ?
     counters[index].value++;
     this.setState({ counters });
   };
 
+  /** reduces value in counter */
+  handleReduce = counter => {
+    const counters = [...this.state.counters]; //clones this array
+    const index = counters.indexOf(counter); //gets index of counter to inc
+    counters[index] = { ...counter }; // ?
+    if (counters[index].value > 0) counters[index].value--;
+    this.setState({ counters });
+  };
+
+  /** sets value in counter to zero */
   handleReset = () => {
     const counters = this.state.counters.map(c => {
       c.value = 0;
@@ -39,6 +51,7 @@ class App extends React.Component {
     this.setState({ counters });
   };
 
+  /** deletes a counter */
   handleDelete = counterId => {
     //creates a new array without the deleted counter
     const counters = this.state.counters.filter(c => c.id !== counterId);
@@ -56,6 +69,7 @@ class App extends React.Component {
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onReduce={this.handleReduce}
             onDelete={this.handleDelete}
           />
         </main>
