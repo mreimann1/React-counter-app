@@ -3,6 +3,8 @@ import NavBar from "./components/navbar";
 import "./App.css";
 import Counters from "./components/counters";
 
+const SIZE = 4;
+/** TODO add way to dynamically change original amount of counters based on SIZE */
 class App extends React.Component {
   state = {
     counters: [
@@ -20,7 +22,7 @@ class App extends React.Component {
 
   /** logs to console when app reaches this lifecycle hook */
   componentDidMount() {
-    // cando Ajax call here IE connect to backend
+    // can do Ajax call here IE connect to backend
     console.log("App - Mounted");
   }
 
@@ -51,6 +53,9 @@ class App extends React.Component {
     this.setState({ counters });
   };
 
+  /** TODO add function that resets all counters to starting number of counters */
+  handleResetAll = () => {};
+
   /** deletes a counter */
   handleDelete = counterId => {
     //creates a new array without the deleted counter
@@ -72,7 +77,7 @@ class App extends React.Component {
             onReduce={this.handleReduce}
             onDelete={this.handleDelete}
           />
-        </main>
+        </main>{" "}
       </React.Fragment>
     );
   }

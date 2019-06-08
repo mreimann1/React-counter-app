@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-
+import SideBar from "./sidebar";
 // Stateless Functional Component
 const NavBar = ({ totalCounters }) => {
   console.log("NavBar - Rendered"); //cannot use other lifecycle hooks in component fcn
   return (
     <nav className="navbar navbar-light bg-light">
       <a className="navbar-brand" href="#">
-        Navbar{" "}
+        BulletChain{" "}
         <span className="badge badge-pill badge-secondary">
           {totalCounters}
         </span>
